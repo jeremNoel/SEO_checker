@@ -6,47 +6,43 @@ let app     = express();
 
 app.get('/scrape', function(req, res){
 
-    url = 'https://getbootstrap.com/';
+    target = 'https://getbootstrap.com/';
 
-    request(url, function(error, response, html){
+    request({url: target, time: true}, function(error, response, html){
+
         if(!error){
             var $ = cheerio.load(html);
 
-            //var title, release, rating;
-            var json = { elementType : "", content : "" };
+            var json = {
+                "responseCode": "",
+                "responseTime": "",
+                "fileSize": "",
+                "element": {
+                    "h1": "",
+                    "meta": "",
+                    "description": "",
+                    "title": "",
+                    "link": "",
+                    "script": "",
+                },
+            };
 
-            const divMain = $('main').find('div');
-            console.log(divMain);
-            console.log('nombre de div: ' + divMain.length);
+            const h1Dom = $('html').find('h1').length;
+            const metaDom = $('html').find('meta').length;
+            const descriptionDom = $('html').find('description').length;
+            const titleDom = $('html').find('title').length;
+            const linkDom = $('html').find('link').length;
+            const scriptDom = $('html').find('script').length;
 
-
-            /*
-            $('div').filter(function(){
-                var data = $(this);
-                const dombody = data.children().text();
-                //console.log(dombody);
-                json.elementType = 'div';
-                json.content = dombody;
-            })
-*/
-
-
-/*
-            $('.header').filter(function(){
-                var data = $(this);
-                title = data.children().first().text();
-                release = data.children().last().children().text();
-
-                json.title = title;
-                json.release = release;
-            })
-
-            $('.star-box-giga-star').filter(function(){
-                var data = $(this);
-                rating = data.text();
-
-                json.rating = rating;
-            })*/
+            json.responseCode = response.statusCode;
+            json.responseTime = response.elapsedTime;
+            json.fileSize = response.content;
+            json.element.h1 = h1Dom;
+            json.element.meta = metaDom;
+            json.element.description = descriptionDom;
+            json.element.title = titleDom;
+            json.element.link = linkDom;
+            json.element.script = scriptDom;
         }
 
 // To write to the system we will use the built in 'fs' library.
@@ -59,14 +55,14 @@ app.get('/scrape', function(req, res){
 
             console.log('File successfully written! - Check your project directory for the output.json file');
 
-        })
+        });
 
 // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
         res.send('Check your console!')
 
     }) ;
-})
+});
 
-app.listen('8081')
+app.listen('8081');
 console.log('Magic happens on port 8081');
 exports = module.exports = app;
