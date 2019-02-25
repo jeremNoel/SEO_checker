@@ -4,8 +4,9 @@ const request = require('request');
 const cheerio = require('cheerio');
 let app     = express();
 
-app.get('/scrape', function(req, res){
+app.get('/scrape/:url', function(req, res){
 
+    const requestUrl = req.params.url;
     target = 'https://getbootstrap.com/';
 
     request({url: target, time: true}, function(error, response, html){
