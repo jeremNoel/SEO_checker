@@ -1,3 +1,5 @@
+import type_check from '../../js/utils.js'
+
 class Element{
     constructor (type, idName, className, value, hasChild){
         this.type = type;
@@ -16,7 +18,14 @@ class Element{
         if(this.value)
             elem.textContent = this.value;
         if(this.hasChild){
-            elem.appendChild(this.hasChild.createElement());
+            if(type_check(this.hasChild, "array")){
+                for(let i = 0; i < this.hasChild.length; i+=1){
+                    console.log(this.hasChild[i]);
+                    elem.appendChild(this.hasChild[i].createElement());
+                }
+            } else {
+                elem.appendChild(this.hasChild.createElement());
+            }
         }
         return elem;
     }
