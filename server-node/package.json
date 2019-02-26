@@ -4,8 +4,9 @@
   "description": "Scrape le web.",
   "main": "server.js",
   "dependencies": {
+    "cheerio": "latest",
+    "cors": "^2.8.5",
     "express": "latest",
-    "request": "latest",
-    "cheerio": "latest"
+    "request": "latest"
   }
 }

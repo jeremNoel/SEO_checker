@@ -1,32 +1,33 @@
 const express = require('express');
 const fs = require('fs');
+const cors = require('cors');
 const request = require('request');
 const cheerio = require('cheerio');
 let app     = express();
 
+app.use(cors());
+
 app.get('/scrape/:url', function(req, res){
 
-    const requestUrl = req.params.url;
-    target = 'https://getbootstrap.com/';
+    const requestUrl = "http://"+req.params.url;
 
-    request({url: target, time: true}, function(error, response, html){
+    request.get({url: requestUrl, time: true}, function(error, response, html){
+        var json = {
+            "responseCode": "",
+            "responseTime": "",
+            "fileSize": "",
+            "element": {
+                "h1": "",
+                "meta": "",
+                "description": "",
+                "title": "",
+                "link": "",
+                "script": "",
+            },
+        };
 
         if(!error){
             var $ = cheerio.load(html);
-
-            var json = {
-                "responseCode": "",
-                "responseTime": "",
-                "fileSize": "",
-                "element": {
-                    "h1": "",
-                    "meta": "",
-                    "description": "",
-                    "title": "",
-                    "link": "",
-                    "script": "",
-                },
-            };
 
             const h1Dom = $('html').find('h1').length;
             const metaDom = $('html').find('meta').length;
@@ -52,14 +53,15 @@ app.get('/scrape/:url', function(req, res){
 // Parameter 2 :  JSON.stringify(json, null, 4) - the data to write, here we do an extra step by calling JSON.stringify to make our JSON easier to read
 // Parameter 3 :  callback function - a callback function to let us know the status of our function
 
-        fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
+        // fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
 
-            console.log('File successfully written! - Check your project directory for the output.json file');
+        //     console.log('File successfully written! - Check your project directory for the output.json file');
 
-        });
+        // });
 
-// Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
-        res.send('Check your console!')
+        // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
+               console.log("json : ", json);
+        res.send(json);
 
     }) ;
 });

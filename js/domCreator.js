@@ -51,10 +51,10 @@ export default function constructDOm() {
     const row4 = new Element('div', null, 'row', null, colRow);
 
     const iconButton = new Element('i', null, 'material-icons right', 'send');
-    const buttonSubmit = new Element('button', null, 'btn waves-effect waves-light orange darken-4', "let's go !", iconButton, 'submit', null, null, null, 'action');
+    const buttonSubmit = new Element('button', null, 'btn waves-effect waves-light orange darken-4 button-url', "let's go !", iconButton, 'submit', null, null, null, 'action');
 
-    const labelInput = new Element('label', null, null, 'Email', null, null, 'email');
-    const inputElem = new Element('input', 'email', 'validate', null, null, 'email');
+    const labelInput = new Element('label', null, null, '', null, null, '');
+    const inputElem = new Element('input', '', 'input-url', null, null, '');
     const tabInput = [inputElem, labelInput];
 
     const inputField = new Element('div', null, 'input-field col s12', null, tabInput);
