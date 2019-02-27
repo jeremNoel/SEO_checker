@@ -7,11 +7,11 @@ dom.appendChild(constructDom());
 constructDom();
 
 document.querySelector(".button-url").addEventListener("click", function( event ) {
-    console.log('click');
     let url = document.querySelector(".input-url").value;
     const request = new Request(url);
-    let requestor = request.requestCrawler(url);
-    console.log("requestor : ", requestor);
+    //const requestor =
+    request.requestCrawler(url);
+    //console.log("requestor : ", requestor);
     
 });
 
