@@ -1,23 +1,26 @@
 class Request {
 
-    constructor (url){
+    constructor(url) {
         this.url = url;
     }
 
     getResponseServer(url) {
-        return new Promise(function(resolve, reject) {
-            setTimeout(function() {
-                reject(false);
-            }, 20000);
-
-            let xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function() {
-                if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-                    resolve(xmlHttp);
-            };
-            xmlHttp.open("GET", 'http://localhost:8081/scrape/'+url, true); // true for asynchronous
-            xmlHttp.send(null);
-        });
+        return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    reject(false);
+                }, 5000);
+                let xmlHttp = new XMLHttpRequest();
+                xmlHttp.onreadystatechange = function () {
+                    if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                        const xmlHttp = new XMLHttpRequest();
+                        xmlHttp.open("GET", 'http://localhost:8081/scrape/' + url, true); // true for asynchronous
+                        xmlHttp.send(null);
+                        //resolve(xmlHttp);
+                    }
+                };
+                resolve(xmlHttp);
+            }
+        );
     }
 
     requestCrawler(url) {
@@ -27,28 +30,33 @@ class Request {
         console.log(this.getResponseServer(url));
 
         this.getResponseServer(url)
-            .then(function(v){
-                console.log(v);
+            .then(function (v) {
+                console.log(v.response);
             })
-            .catch(function(v){
-            console.log('rejected', v);
-        });
+            .catch(function (v) {
+                console.log('rejected', v);
+            });
+    }
+}
 
-        /*let promise = new Promise(function(resolve, reject) {
-            setTimeout(function() {
-                reject(false);
-            }, 10000);
+export default Request;
 
-            let xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function() {
-                if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
-                    resolve(xmlHttp);
-            };
-            xmlHttp.open("GET", 'http://localhost:8081/scrape/'+url, true); // true for asynchronous
-            xmlHttp.send(null);
 
-          });*/
-          // resolve runs the first function in .then
+/* let promise = new Promise(function(resolve, reject) {
+     setTimeout(function() {
+         reject(false);
+     }, 10000);
+
+     let xmlHttp = new XMLHttpRequest();
+     xmlHttp.onreadystatechange = function() {
+         if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+             resolve(xmlHttp);
+     };
+     xmlHttp.open("GET", 'http://localhost:8081/scrape/'+url, true); // true for asynchronous
+     xmlHttp.send(null);
+
+   });*/
+// resolve runs the first function in .then
 /*          promise.then(function(value) {
               console.log("response : ",JSON.parse(value.response));
                 return {
@@ -61,6 +69,3 @@ class Request {
                     value: {}
                 }
           });*/
-    }
-}
-export default Request;
