@@ -20,14 +20,12 @@ function UndefinedPropertyError(path, property, object) {
 }
 
 export function interpolate(str,json) {
-    console.log("str : ", str);
-    console.log("json : ", json);
     const regex = /\{{([^$]*)\}}/gm;
     let match = regex.exec(str);
     const keyObject = Object.keys(json);
     const valueObject = Object.values(json);
     if (keyObject[0] === match[1])
-        return str.replace(match[0], toString(valueObject[0]));
+        return str.replace(match[0], valueObject[0]);
     else
         return false;
 }

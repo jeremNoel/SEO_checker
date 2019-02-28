@@ -1,17 +1,16 @@
 import Element from './class/Element.js';
 
 export default function constructDOm() {
-
-    const span6 = new Element('span', null, 'badge', '12');
+    const span6 = new Element('span', 'responseScriptValue', 'badge', '{{script}}');
     const ahref6 = new Element('a', null, 'collection-item orange-text', 'script', span6, null, null, '#!');
 
-    const span5 = new Element('span', null, 'badge', '13');
+    const span5 = new Element('span', 'responseLinkValue', 'badge', '{{link}}');
     const ahref5 = new Element('a', null, 'collection-item orange-text', 'link', span5, null, null, '#!');
 
-    const span4 = new Element('span', null, 'badge', '1');
+    const span4 = new Element('span', 'responseTitleValue', 'badge', '{{title}}');
     const ahref4 = new Element('a', null, 'collection-item orange-text', 'title', span4, null, null, '#!');
 
-    const span3 = new Element('span', null, 'badge', '56');
+    const span3 = new Element('span', 'responseDescriptionValue', 'badge', '{{description}}');
     const ahref3 = new Element('a', null, 'collection-item orange-text', 'description', span3, null, null, '#!');
 
     const span2 = new Element('span', 'responseMetaValue', 'badge', '{{meta}}');
@@ -47,10 +46,13 @@ export default function constructDOm() {
 
     const table = new Element('table', null, 'centered responsive-table', null, tabTableHeader);
     const colRow = new Element('div', null, 'col l12 m12 s12', null, table);
-    const row4 = new Element('div', null, 'row', null, colRow);
+    const row4 = new Element('div', null, 'dom-result row', null, colRow);
 
     const iconButton = new Element('i', null, 'material-icons right', 'send');
     const buttonSubmit = new Element('button', null, 'btn waves-effect waves-light orange darken-4 button-url', "let's go !", iconButton, 'submit', null, null, null, 'action');
+
+    const refreshButton = new Element('i', null, 'material-icons right', '');
+    const refreshSubmit = new Element('button', null, 'btn waves-effect waves-light orange darken-4 button-refresh', "New search", refreshButton, 'submit', null, null, null, 'action');
 
     const labelInput = new Element('label', null, null, '', null, null, '');
     const inputElem = new Element('input', '', 'input-url', null, null, '');
@@ -63,14 +65,14 @@ export default function constructDOm() {
     const row2 = new Element('div', null, 'row', null, form);
     const h4Title = new Element('h4', null, 'text-colors', 'Start by giving us the URL below');
     const spanCard = new Element('span', null, 'card-title orange-text', 'SEO checker');
-    const tabTitle = [spanCard, h4Title, row2, buttonSubmit, row4];
+    const tabTitle = [spanCard, h4Title, row2, buttonSubmit, refreshSubmit, row4];
 
     const cardContent = new Element('div', null, 'card-content white-text', null, tabTitle);
     const card1 = new Element('div', null, 'card blue-grey darken-1', null, cardContent);
-    const col1 = new Element('div', null, 'col s8 m8 s8 offset-l2 offset-m2 offset-s2', null, card1);
+    const col1 = new Element('div', null, 'col s10 m10 s10 offset-l1 offset-m1 offset-s1', null, card1);
     const row = new Element('div', null, 'row', null, col1);
 
-    const homepageResult = new Element('div', null, 'homepage-result', null, row);
+    const homepageResult = new Element('div', null, 'homepage-result blue-grey', null, row);
 
     return homepageResult.createElement();
 };

@@ -19,3 +19,11 @@
 .text-colors {
     color: #87A0B2;
 }
+
+.dom-result {
+    display: none;
+}
+
+.button-refresh {
+    margin-left: 20px;
+}

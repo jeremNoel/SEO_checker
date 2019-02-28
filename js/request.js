@@ -21,10 +21,6 @@ class Request {
     }
 
     requestCrawler(url) {
-        console.log("request : ", this.url);
-
-        console.log(url);
-        console.log(this.getResponseServer(url));
         return this.getResponseServer(url);
     }
 }

@@ -60,7 +60,7 @@ app.get('/scrape/:url', function(req, res){
         // });
 
         // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
-               console.log("json : ", json);
+
         res.send(json);
 
     }) ;
