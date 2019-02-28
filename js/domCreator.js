@@ -14,22 +14,21 @@ export default function constructDOm() {
     const span3 = new Element('span', null, 'badge', '56');
     const ahref3 = new Element('a', null, 'collection-item orange-text', 'description', span3, null, null, '#!');
 
-    const span2 = new Element('span', null, 'badge', '42');
+    const span2 = new Element('span', 'responseMetaValue', 'badge', '{{meta}}');
     const ahref2 = new Element('a', null, 'collection-item orange-text', 'meta', span2, null, null, '#!');
 
-    const span1 = new Element('span', null, 'badge', '1');
+    const span1 = new Element('span', "responseH1Value", 'badge', '{{h1}}');
     const ahref1 = new Element('a', null, 'collection-item orange-text', 'h1', span1, null, null, '#!');
 
     const ahrefTab = [ahref1,ahref2,ahref3,ahref4,ahref5,ahref6];
 
     const divCollection = new Element('div', null, 'collection', null, ahrefTab);
 
-    const td5 = new Element('td', null, null, 'IdAsauvegarderpourconsulterplustard');
-    const td4 = new Element('td', null, null, null, divCollection);
-    const td3 = new Element('td', null, null, '404');
-    const td2 = new Element('td', null, null, '230');
-    const td1 = new Element('td', null, null, '1300');
-    const tabTr2 = [td1, td2, td3, td4, td5];
+    const td4 = new Element('td', null, null, 'IdAsauvegarderpourconsulterplustard');
+    const td3 = new Element('td', null, null, null, divCollection);
+    const td2 = new Element('td', "responseTimeValue", null, '{{responseTime}}');
+    const td1 = new Element('td', "responseCodeValue", null, '{{responseCode}}');
+    const tabTr2 = [td1, td2, td3, td4];
 
     const tr2 = new Element('tr', null, null, null, tabTr2);
     const tbody = new Element('tbody');

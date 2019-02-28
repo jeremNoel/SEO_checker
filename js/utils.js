@@ -19,6 +19,19 @@ function UndefinedPropertyError(path, property, object) {
     return instance;
 }
 
+export function interpolate(str,json) {
+    console.log("str : ", str);
+    console.log("json : ", json);
+    const regex = /\{{([^$]*)\}}/gm;
+    let match = regex.exec(str);
+    const keyObject = Object.keys(json);
+    const valueObject = Object.values(json);
+    if (keyObject[0] === match[1])
+        return str.replace(match[0], toString(valueObject[0]));
+    else
+        return false;
+}
+
 Object.prototype.prop_access = function(path) {
     if(!path) return this;
     const pathArray = path.split(".");
