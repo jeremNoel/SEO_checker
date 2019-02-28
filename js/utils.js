@@ -74,3 +74,11 @@ export default function type_check(data, conf) {
     }
     return true;
 }
+
+export default function interpolate(str,json) {
+    let toChange = /\{{([^$]*)\}}/gm;
+    var match = toChange.exec(str);
+    console.log("match : ", match[1]); //name
+    let result = str.replace('/{{(.*?)}}/g', json[match[1]]);
+    console.log("result : ", result);//Bonjour, je m'appelle {{name}}
+}

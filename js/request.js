@@ -12,12 +12,12 @@ class Request {
                 let xmlHttp = new XMLHttpRequest();
                 xmlHttp.onreadystatechange = function () {
                     if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                        const xmlHttp = new XMLHttpRequest();
-                        xmlHttp.open("GET", 'http://localhost:8081/scrape/' + url, true); // true for asynchronous
-                        xmlHttp.send(null);
-                        //resolve(xmlHttp);
+                        
+                        resolve(xmlHttp);
                     }
                 };
+                xmlHttp.open("GET", 'http://localhost:8081/scrape/' + url, false); // true for asynchronous
+                xmlHttp.send(null);
                 resolve(xmlHttp);
             }
         );
@@ -31,11 +31,10 @@ class Request {
 
         this.getResponseServer(url)
             .then(function (v) {
-                console.log(v.response);
-            })
-            .catch(function (v) {
-                console.log('rejected', v);
-            });
+                return v.response;
+        });
+
+        // console.log("requestor : ", requestor.);
     }
 }
 
