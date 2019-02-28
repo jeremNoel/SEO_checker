@@ -1,4 +1,4 @@
-import type_check from '../../js/utils.js'
+import {type_check} from '../../js/utils.js'
 
 class Element{
     constructor (type, idName, className, value, hasChild, typeElem, forElem, hrefElem, widthElem, nameElem){
