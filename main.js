@@ -9,7 +9,7 @@ dom.appendChild(constructDom());
 constructDom();
 
 document.querySelector(".button-url").addEventListener("click", function( event ) {
-    let url = document.querySelector(".input-url").value;
+    const url = document.querySelector(".input-url").value;
     const request = new Request(url);
     const result = request.requestCrawler(url);
 
@@ -48,10 +48,7 @@ function initInterpolate(json) {
     responseLinkElem.textContent = utils.interpolate(responseLinkElem.textContent, {link: object.element['link']});
     responseScriptElem.textContent = utils.interpolate(responseScriptElem.textContent, {script: object.element['script']});
 
-    
     showDom();
-    return;
-
 }
 
 
